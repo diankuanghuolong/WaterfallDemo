@@ -266,7 +266,7 @@
     [self.dataSource exchangeObjectAtIndex:sourceIndexPath.item withObjectAtIndex:destinationIndexPath.item];
     [_collectionView reloadData];
     
-#warning 本demo中，加入了移动cell大功能，但是测试发现，不论怎样移动，都会移动到index为0到位置，也就是说，destinationIndexPath.item始终为0。如果collectionview布局不是瀑布流布局，而是正常的均等布局，效果正常。如果你有好的策略，欢迎指教。github issues我（github地址）。
+#warning 本demo中，加入了移动cell大功能，但是测试发现，不论怎样移动，都会移动到index为0到位置，也就是说，destinationIndexPath.item始终为0。如果collectionview布局不是瀑布流布局，而是正常的均等布局，效果正常。如果你有好的策略，欢迎指教。github issues我（github地址 https://github.com/diankuanghuolong/WaterfallDemo）。
     
     
     
