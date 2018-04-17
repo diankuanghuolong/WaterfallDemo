@@ -106,27 +106,29 @@
     NSArray * sourceArr = [WaterfallModel mj_objectArrayWithFilename:@"model.plist"];
     NSMutableArray *arr = [NSMutableArray new];
     
-    NSInteger iCount = PAGESIZE;
-    if (_dataSource.count < sourceArr.count)
-    {
-        iCount = (page - 1)* PAGESIZE + PAGESIZE > sourceArr.count ? sourceArr.count - _dataSource.count +  (page - 1)* PAGESIZE : (page - 1)* PAGESIZE + PAGESIZE;
-    }
-    else
-    {
-        iCount = (page - 1)* PAGESIZE + PAGESIZE;
-    }
-    
     
     //模拟分页效果，取数据
-    for (int i = (page - 1)* PAGESIZE; i < iCount; i ++)
+    NSMutableArray *listArr = [NSMutableArray new];
+    NSUInteger count = sourceArr.count;//数组元素个数
+    int max= PAGESIZE;//几个分割一次
+    NSUInteger segment= count / max + (count % max== 0 ? 0 : 1);//需要分割几次
+    for (int i= 0;i< segment; i++)
     {
-        [arr addObject:sourceArr[i]];
+        NSUInteger star= i*max; //开始位置
+        NSUInteger end= (i==(segment-1))?(count-i*max)%(max+1):max; //结束位置
+        NSLog(@"%lu,%lu",(unsigned long)star,(unsigned long)end);
+        NSRange range= NSMakeRange(star,end); //分割范围
+        NSArray *subArray= [sourceArr subarrayWithRange:range];//开始抽取
+        
+        [listArr addObject:subArray];
+        NSLog(@"subArray=-----------%@,arr ====== %@",subArray,listArr);
     }
+    
+    arr = listArr.count == 0 ? @[] : (page - 1 > (listArr.count - 1) ? @[] : listArr[page - 1]);
     
     if (arr.count == 0)
     {
         [self handleDatas:@[]];
-       
     }
     else
         [self handleDatas:arr];
