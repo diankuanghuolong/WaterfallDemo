@@ -1,7 +1,7 @@
 # WaterfallDemo
 WaterfallDemo
 
-本demo中，加入了移动cell大功能，但是测试发现，不论怎样移动，都会移动到index为0到位置，也就是说，destinationIndexPath.item始终为0。如果collectionview布局不是瀑布流布局，而是正常的均等布局，效果正常。如果你有好的策略，欢迎指教。github issues我（[github地址 ](https://github.com/diankuanghuolong/WaterfallDemo/issues)）。
+本demo中，加入了移动cell的功能，但是测试发现，不论怎样移动，都会移动到index为0到位置，也就是说，destinationIndexPath.item始终为0。如果collectionview布局不是瀑布流布局，而是正常的均等布局，效果正常。如果你有好的策略，欢迎指教。github issues我（[github地址 ](https://github.com/diankuanghuolong/WaterfallDemo/issues)）。
 
 ```
 瀑布流布局，有几点需要明确：
@@ -10,7 +10,7 @@ WaterfallDemo
 第三：布局控件collectionFlowLayout，自定义。最好自定义，因为，瀑布流布局，主要是对布局控件flowlayout的高度对计算和处理。
 第四：这个有点好笑啦，不过也很重要（如果你真地不知道）。item的高度咋算呢？通常，你的瀑布流布局（以图片列表为例），应该是有严格的设计标准的。
 也就是说，看似杂乱，实则有序。那么这就该是提前设计好的，提前设计好的东西，最好就是后台给你了。后台给你列表中每个位置的图片是哪个，多宽（固定），多高。然后，你再根据页面上有多少列，每列的宽度是多少，算出多高（这个应该会的，比如给你一个image，如何不失真啊？ 宽度固定的话，那么高度就是cgfloat h = w* img.height/img.width）。
-第五：布局控件flowlayout中，重写，preparelayout方法，并调整布局。网上一大把，自己去找找吧。封装一个适合自己，自己喜欢的布局控件，然后就可以得手的应用了。
+第五：布局控件flowlayout中，重写preparelayout方法，并调整布局。网上一大把，自己去找找吧。封装一个适合自己，自己喜欢的布局控件，然后就可以得手的应用了。
 ```
 
 ![展示图片](https://github.com/diankuanghuolong/WaterfallDemo/blob/master/showImgs/waterfallDemo.gif)
